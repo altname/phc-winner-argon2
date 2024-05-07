@@ -34,7 +34,7 @@ let package = Package(
                 "src/test.c",
             ],
             sources: [
-                "src/blake2/blake2b.c",
+                "src/a2blake2/a2blake2b.c",
                 "src/argon2.c",
                 "src/core.c",
                 "src/encoding.c",

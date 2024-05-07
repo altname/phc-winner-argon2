@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -207,10 +207,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\argon2.h" />
-    <ClInclude Include="..\..\src\blake2\blake2-impl.h" />
-    <ClInclude Include="..\..\src\blake2\blake2.h" />
-    <ClInclude Include="..\..\src\blake2\blamka-round-opt.h" />
-    <ClInclude Include="..\..\src\blake2\blamka-round-ref.h" />
+    <ClInclude Include="..\..\src\a2blake2\a2blake2-impl.h" />
+    <ClInclude Include="..\..\src\a2blake2\a2blake2.h" />
+    <ClInclude Include="..\..\src\a2blake2\blamka-round-opt.h" />
+    <ClInclude Include="..\..\src\a2blake2\blamka-round-ref.h" />
     <ClInclude Include="..\..\src\core.h" />
     <ClInclude Include="..\..\src\encoding.h" />
     <ClInclude Include="..\..\src\genkat.h" />
@@ -219,7 +219,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\argon2.c" />
-    <ClCompile Include="..\..\src\blake2\blake2b.c" />
+    <ClCompile Include="..\..\src\a2blake2\a2blake2b.c" />
     <ClCompile Include="..\..\src\core.c" />
     <ClCompile Include="..\..\src\encoding.c" />
     <ClCompile Include="..\..\src\genkat.c" />

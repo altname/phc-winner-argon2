@@ -5,7 +5,7 @@ libargon2.dylib
 libargon2.pc
 .DS_Store
 src/*.o
-src/blake2/*.o
+src/a2blake2/*.o
 genkat
 .idea
 *.pyc

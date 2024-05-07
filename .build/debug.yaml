@@ -1,0 +1,75 @@
+client:
+  name: basic
+  file-system: device-agnostic
+tools: {}
+targets:
+  "PackageStructure": ["<PackageStructure>"]
+  "argon2-debug.module": ["<argon2-debug.module>"]
+  "main": ["<argon2-debug.module>"]
+  "test": ["<argon2-debug.module>"]
+default: "main"
+nodes:
+  "/Users/anton/Documents/projects/ad/phc-winner-argon2/":
+    is-directory-structure: true
+    content-exclusion-patterns: [".git",".build"]
+commands:
+  "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/a2blake2/a2blake2b.c.o":
+    tool: clang
+    inputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/src/a2blake2/a2blake2b.c"]
+    outputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/a2blake2/a2blake2b.c.o"]
+    description: "Compiling argon2 src/a2blake2/a2blake2b.c"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang","-fobjc-arc","-target","arm64-apple-macosx10.13","-O0","-DSWIFT_PACKAGE=1","-DDEBUG=1","-fblocks","-index-store-path","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/index/store","-fmodules","-fmodule-name=argon2","-I","/Users/anton/Documents/projects/ad/phc-winner-argon2/include","-fmodules-cache-path=/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/ModuleCache","-isysroot","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-fPIC","-g","-MD","-MT","dependencies","-MF","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/a2blake2/a2blake2b.c.d","-c","/Users/anton/Documents/projects/ad/phc-winner-argon2/src/a2blake2/a2blake2b.c","-o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/a2blake2/a2blake2b.c.o"]
+    deps: "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/a2blake2/a2blake2b.c.d"
+
+  "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/argon2.c.o":
+    tool: clang
+    inputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/src/argon2.c"]
+    outputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/argon2.c.o"]
+    description: "Compiling argon2 src/argon2.c"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang","-fobjc-arc","-target","arm64-apple-macosx10.13","-O0","-DSWIFT_PACKAGE=1","-DDEBUG=1","-fblocks","-index-store-path","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/index/store","-fmodules","-fmodule-name=argon2","-I","/Users/anton/Documents/projects/ad/phc-winner-argon2/include","-fmodules-cache-path=/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/ModuleCache","-isysroot","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-fPIC","-g","-MD","-MT","dependencies","-MF","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/argon2.c.d","-c","/Users/anton/Documents/projects/ad/phc-winner-argon2/src/argon2.c","-o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/argon2.c.o"]
+    deps: "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/argon2.c.d"
+
+  "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/core.c.o":
+    tool: clang
+    inputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/src/core.c"]
+    outputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/core.c.o"]
+    description: "Compiling argon2 src/core.c"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang","-fobjc-arc","-target","arm64-apple-macosx10.13","-O0","-DSWIFT_PACKAGE=1","-DDEBUG=1","-fblocks","-index-store-path","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/index/store","-fmodules","-fmodule-name=argon2","-I","/Users/anton/Documents/projects/ad/phc-winner-argon2/include","-fmodules-cache-path=/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/ModuleCache","-isysroot","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-fPIC","-g","-MD","-MT","dependencies","-MF","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/core.c.d","-c","/Users/anton/Documents/projects/ad/phc-winner-argon2/src/core.c","-o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/core.c.o"]
+    deps: "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/core.c.d"
+
+  "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/encoding.c.o":
+    tool: clang
+    inputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/src/encoding.c"]
+    outputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/encoding.c.o"]
+    description: "Compiling argon2 src/encoding.c"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang","-fobjc-arc","-target","arm64-apple-macosx10.13","-O0","-DSWIFT_PACKAGE=1","-DDEBUG=1","-fblocks","-index-store-path","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/index/store","-fmodules","-fmodule-name=argon2","-I","/Users/anton/Documents/projects/ad/phc-winner-argon2/include","-fmodules-cache-path=/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/ModuleCache","-isysroot","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-fPIC","-g","-MD","-MT","dependencies","-MF","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/encoding.c.d","-c","/Users/anton/Documents/projects/ad/phc-winner-argon2/src/encoding.c","-o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/encoding.c.o"]
+    deps: "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/encoding.c.d"
+
+  "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/ref.c.o":
+    tool: clang
+    inputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/src/ref.c"]
+    outputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/ref.c.o"]
+    description: "Compiling argon2 src/ref.c"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang","-fobjc-arc","-target","arm64-apple-macosx10.13","-O0","-DSWIFT_PACKAGE=1","-DDEBUG=1","-fblocks","-index-store-path","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/index/store","-fmodules","-fmodule-name=argon2","-I","/Users/anton/Documents/projects/ad/phc-winner-argon2/include","-fmodules-cache-path=/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/ModuleCache","-isysroot","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-fPIC","-g","-MD","-MT","dependencies","-MF","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/ref.c.d","-c","/Users/anton/Documents/projects/ad/phc-winner-argon2/src/ref.c","-o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/ref.c.o"]
+    deps: "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/ref.c.d"
+
+  "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/thread.c.o":
+    tool: clang
+    inputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/src/thread.c"]
+    outputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/thread.c.o"]
+    description: "Compiling argon2 src/thread.c"
+    args: ["/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang","-fobjc-arc","-target","arm64-apple-macosx10.13","-O0","-DSWIFT_PACKAGE=1","-DDEBUG=1","-fblocks","-index-store-path","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/index/store","-fmodules","-fmodule-name=argon2","-I","/Users/anton/Documents/projects/ad/phc-winner-argon2/include","-fmodules-cache-path=/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/ModuleCache","-isysroot","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX14.4.sdk","-F","/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks","-fPIC","-g","-MD","-MT","dependencies","-MF","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/thread.c.d","-c","/Users/anton/Documents/projects/ad/phc-winner-argon2/src/thread.c","-o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/thread.c.o"]
+    deps: "/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/thread.c.d"
+
+  "<argon2-debug.module>":
+    tool: phony
+    inputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/a2blake2/a2blake2b.c.o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/argon2.c.o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/core.c.o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/encoding.c.o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/ref.c.o","/Users/anton/Documents/projects/ad/phc-winner-argon2/.build/arm64-apple-macosx/debug/argon2.build/src/thread.c.o"]
+    outputs: ["<argon2-debug.module>"]
+
+  "PackageStructure":
+    tool: package-structure-tool
+    inputs: ["/Users/anton/Documents/projects/ad/phc-winner-argon2/","/Users/anton/Documents/projects/ad/phc-winner-argon2/Package.swift","/Users/anton/Documents/projects/ad/phc-winner-argon2/Package.resolved"]
+    outputs: ["<PackageStructure>"]
+    description: "Planning build"
+    allow-missing-inputs: true
+

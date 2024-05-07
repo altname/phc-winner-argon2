@@ -1,0 +1,4 @@
+module argon2 {
+    umbrella header "/Users/anton/Documents/projects/ad/phc-winner-argon2/include/argon2.h"
+    export *
+}

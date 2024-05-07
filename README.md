@@ -296,7 +296,7 @@ The string encoding routines in [`src/encoding.c`](src/encoding.c) are
 copyright (c) 2015 Thomas Pornin, and under
 [CC0 License](https://creativecommons.org/about/cc0).
 
-The BLAKE2 code in [`src/blake2/`](src/blake2) is copyright (c) Samuel
+The a2blake2 code in [`src/a2blake2/`](src/a2blake2) is copyright (c) Samuel
 Neves, 2013-2015, and under
 [CC0 License](https://creativecommons.org/about/cc0).
 

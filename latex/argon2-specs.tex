@@ -114,7 +114,7 @@ The hash function is called \emph{memory-hard} if $D(\alpha) >1/\alpha$ as $\alp
 In the following text, we will not attempt to  estimate  time and area with large precision. However, an interested reader may use the following implementations as reference:
  \begin{itemize}
    \item The 50-nm DRAM implementation~\cite{giridhar2013dram} takes 550 mm${}^2$ per GByte;
-   \item The Blake2b implementation in the 65-nm process should take about 0.1 mm${}^2$ (using Blake-512 implementation in~\cite{gurkaynak2012sha3});
+   \item The a2blake2b implementation in the 65-nm process should take about 0.1 mm${}^2$ (using Blake-512 implementation in~\cite{gurkaynak2012sha3});
    \item The maximum memory bandwidth achieved by modern GPUs is around 400 GB/sec.
  \end{itemize}
  
@@ -180,7 +180,7 @@ There are two flavors of \textsf{Argon2}\ -- \textsf{Argon2d} and \textsf{Argon2
   \item Type $y$ of \textsf{Argon2}: 0 for  \textsf{Argon2d}, 1 for \textsf{Argon2i}, 2 for \textsf{Argon2id}.
 \end{itemize}
 
-\textsf{Argon2}\ uses internal compression function ${G}$ with two 1024-byte inputs and a 1024-byte output, and internal hash function ${H}$. Here ${H}$ is the Blake2b hash function, and ${G}$ is based on  its internal permutation. The mode of operation of \textsf{Argon2} is quite simple when no parallelism is used: function ${G}$ is iterated $m$ times. At step $i$ a block with index $\phi(i)<i$ is taken from the memory (Figure~\ref{fig:generic}), where $\phi(i)$ is either determined by the previous block in \textsf{Argon2d}, or is a fixed value in \textsf{Argon2i}.
+\textsf{Argon2}\ uses internal compression function ${G}$ with two 1024-byte inputs and a 1024-byte output, and internal hash function ${H}$. Here ${H}$ is the a2blake2b hash function, and ${G}$ is based on  its internal permutation. The mode of operation of \textsf{Argon2} is quite simple when no parallelism is used: function ${G}$ is iterated $m$ times. At step $i$ a block with index $\phi(i)<i$ is taken from the memory (Figure~\ref{fig:generic}), where $\phi(i)$ is either determined by the previous block in \textsf{Argon2d}, or is a fixed value in \textsf{Argon2i}.
 
 
 
@@ -230,7 +230,7 @@ $$
 $$
 
 
-\paragraph{Variable-length hash function.} Let $H_x$ be a hash function with $x$-byte output (in our case $H_x$ is Blake2b, which supports $1\leq x \leq 64$). We define $H'$ as follows. Let $V_i$ be a 64-byte block, and  $A_i$ be its first 32 bytes,
+\paragraph{Variable-length hash function.} Let $H_x$ be a hash function with $x$-byte output (in our case $H_x$ is a2blake2b, which supports $1\leq x \leq 64$). We define $H'$ as follows. Let $V_i$ be a 64-byte block, and  $A_i$ be its first 32 bytes,
 and $\tau<2^{32}$ be the 32-bit tag length (viewed little-endian) in bytes. 
 Then we define
 $$
@@ -297,7 +297,7 @@ Then we enumerate the blocks in $\mathcal{R}$ in the order of construction and s
 
 \subsection{Compression function \texorpdfstring{$G$}{G}}\label{sec:compr}
 
-Compression function $G$ is built upon  the Blake2b round function $\mathcal{P}$ (fully defined in Section~\ref{sec:blakeround}). $\mathcal{P}$ operates on the 128-byte input, which can be viewed as 8 16-byte registers (see details below):
+Compression function $G$ is built upon  the a2blake2b round function $\mathcal{P}$ (fully defined in Section~\ref{sec:blakeround}). $\mathcal{P}$ operates on the 128-byte input, which can be viewed as 8 16-byte registers (see details below):
 $$
 \mathcal{P}(A_0,A_1,\ldots, A_7) = (B_0,B_1,\ldots, B_7).
 $$
@@ -461,7 +461,7 @@ that $G$ works as follows:
 $$
 G(X,Y) = P(Z)\oplus (Z), \quad Z = X\oplus Y.
 $$
-where $P$ is a permutation based on the 2-round Blake2b permutation. Let us prove that all $Z$ are different under certain assumptions.
+where $P$ is a permutation based on the 2-round a2blake2b permutation. Let us prove that all $Z$ are different under certain assumptions.
 \begin{theorem}
   Let $\Pi$ be \textsf{Argon2d} or \textsf{Argon2i} with $d$ lanes, $s$ slices, and $t$ passes over memory. Assume that
    \begin{itemize}
@@ -507,7 +507,7 @@ Time and computational penalties for 1-pass \textsf{Argon2d} are given in Table~
 while keeping the time-area product the same.
 
 
-\textsf{Argon2i} is more vulnerable to tradeoff attacks due to its data-independent addressing scheme. We applied the ranking algorithm to 3-pass \textsf{Argon2i} to calculate time and computational penalties. We found out  that the memory reduction by the factor of 3 already gives the computational penalty of around $2^{14}$.  The $2^{14}$ Blake2b cores would take more area than 1 GB of RAM (Section~\ref{sec:costs}), thus prohibiting the adversary to further reduce the time-area product. We conclude that the time-area product cost for \textsf{Argon2i} can be reduced by 3 at best.
+\textsf{Argon2i} is more vulnerable to tradeoff attacks due to its data-independent addressing scheme. We applied the ranking algorithm to 3-pass \textsf{Argon2i} to calculate time and computational penalties. We found out  that the memory reduction by the factor of 3 already gives the computational penalty of around $2^{14}$.  The $2^{14}$ a2blake2b cores would take more area than 1 GB of RAM (Section~\ref{sec:costs}), thus prohibiting the adversary to further reduce the time-area product. We conclude that the time-area product cost for \textsf{Argon2i} can be reduced by 3 at best.
 
 \subsection{Security of Argon2i to generic tradeoff attacks on random graphs}
 
@@ -721,10 +721,10 @@ These criteria ensure that the attacker is unable to compute an output bit using
 
 We have not found any generic design strategy for such large-block compression functions. It is difficult to maintain diffusion on large memory blocks due to the lack of CPU instructions that interleave many registers at once. A naive approach would be to apply a linear transformation with certain branch number. However, even if we operate on 16-byte registers, a 1024-byte block would consist of 64 elements. A $64\times 64$-matrix would require 32 XORs per register to implement, which gives a penalty about 2 cycles per byte.
 
-Instead, we propose to build the compression function on the top of a transformation $P$ that already mixes several registers. We apply $P$ in parallel (having a P-box), then shuffle the output registers and apply it again. If $P$ handles $p$ registers, then the compression function may transform a block of $p^2$ registers with 2 rounds of P-boxes. We do not have to manually shuffle the data, we just change the inputs to P-boxes. As an example, an implementation of the Blake2b~\cite{AumassonNWW13} permutation processes 8 128-bit registers, so with 2 rounds of Blake2b we can design
+Instead, we propose to build the compression function on the top of a transformation $P$ that already mixes several registers. We apply $P$ in parallel (having a P-box), then shuffle the output registers and apply it again. If $P$ handles $p$ registers, then the compression function may transform a block of $p^2$ registers with 2 rounds of P-boxes. We do not have to manually shuffle the data, we just change the inputs to P-boxes. As an example, an implementation of the a2blake2b~\cite{AumassonNWW13} permutation processes 8 128-bit registers, so with 2 rounds of a2blake2b we can design
 a compression function that mixes the 8192-bit block. We stress that this approach is not possible with dedicated AES instructions. Even though they are very fast, they apply only to the 128-bit block, and we still have to diffuse its content across other blocks.
 
-We replace the original Blake2b round function 
+We replace the original a2blake2b round function 
 with its modification BlaMka~\cite{cryptoeprint:2015:136}, where the modular additions in $G$ are combined with 32-bit multiplications. Our motivation was to increase the circuit depth (and thus the running time) of a potential ASIC implementation while having roughly the same running time on CPU thanks to parallelism and pipelining. Extra multiplications in the scheme serve well, as the best addition-based circuits for multiplication have latency about 4-5 times the addition latency for 32-bit multiplication (or roughly $\log_n$ for $n$-bit multiplication).
 
 As a result, any output 64-bit word of  $\mathcal{P}$  is implemented by a chain of additions, multiplications, XORs, and rotations. The shortest possible chain for the 1 KB-block (e.g, from $v_0$  to $v_0$) consists of 12 MULs, 12 XORs, and 12 rotations.
@@ -825,7 +825,7 @@ Further development of tradeoff attacks with dedication to \textsf{Argon2} is th
 
 \section{Permutation \texorpdfstring{$\mathcal{P}$}{P}}\label{sec:blakeround}
 
-Permutation $\mathcal{P}$  is based on the round function of Blake2b and works as follows. Its 8 16-byte inputs $S_0, S_1,\ldots, S_7$ are viewed as a $4\times 4$-matrix of 64-bit words, where $S_i = (v_{2i+1}||v_{2i})$:
+Permutation $\mathcal{P}$  is based on the round function of a2blake2b and works as follows. Its 8 16-byte inputs $S_0, S_1,\ldots, S_7$ are viewed as a $4\times 4$-matrix of 64-bit words, where $S_i = (v_{2i+1}||v_{2i})$:
 $$
 \begin{pmatrix}
   v_0 & v_1 & v_2 & v_3\\
@@ -852,7 +852,7 @@ where $G$  applies to $(a,b,c,d)$ as follows:
   b &\leftarrow (b\oplus c)\ggg 63;\\
 \end{aligned}
 \end{equation}
-Here $+$ are additions modulo $2^{64}$ and $\ggg$ are 64-bit rotations to the right. $x_L$ is the 64-bit integer $x$ truncated to the 32 least significant bits. The modular additions in $G$ are combined with 64-bit multiplications (that is the only difference to the original Blake2 design). 
+Here $+$ are additions modulo $2^{64}$ and $\ggg$ are 64-bit rotations to the right. $x_L$ is the 64-bit integer $x$ truncated to the 32 least significant bits. The modular additions in $G$ are combined with 64-bit multiplications (that is the only difference to the original a2blake2 design). 
 
 
 Our motivation in adding multiplications is to increase the circuit depth (and thus the running time) of a potential ASIC implementation while having roughly the same running time on CPU thanks to parallelism and pipelining. Extra multiplications in the scheme serve well, as the best addition-based circuits for multiplication have latency about 4-5 times the addition latency for 32-bit multiplication (or roughly $\log_n$ for $n$-bit multiplication).

@@ -31,7 +31,7 @@ ABI_VERSION = 1
 
 DIST = phc-winner-argon2
 
-SRC = src/argon2.c src/core.c src/blake2/blake2b.c src/thread.c src/encoding.c
+SRC = src/argon2.c src/core.c src/a2blake2/a2blake2b.c src/thread.c src/encoding.c
 SRC_RUN = src/run.c
 SRC_BENCH = src/bench.c
 SRC_GENKAT = src/genkat.c
@@ -193,7 +193,7 @@ clean:
 		rm -f testcase
 		rm -rf *.dSYM
 		cd src/ && rm -f *.o
-		cd src/blake2/ && rm -f *.o
+		cd src/a2blake2/ && rm -f *.o
 		cd kats/ &&  rm -f kat-* diff* run_* make_*
 
 
@@ -231,7 +231,7 @@ testci:         $(SRC) src/test.c
 .PHONY: format
 format:
 		clang-format -style="{BasedOnStyle: llvm, IndentWidth: 4}" \
-			-i include/*.h src/*.c src/*.h src/blake2/*.c src/blake2/*.h
+			-i include/*.h src/*.c src/*.h src/a2blake2/*.c src/a2blake2/*.h
 
 .PHONY: install
 install: $(RUN) libs
